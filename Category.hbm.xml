@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="web.any.docopy.Domain" assembly="web.any.docopy"
+    default-lazy="false"> <!-- Running NHibernate in Medium Trust -->
+
+  <class name="web.any.docopy.Domain.Category"
+         table="Categories">
+
+    <id name="Id"
+        column="Id"
+        type="int">
+      <generator class="native" />
+    </id>
+
+    <set name="Tasks"
+         inverse="true"
+         cascade="all-delete-orphan">
+
+      <key column="CategoryId" />
+      <one-to-many class="web.any.docopy.Domain.Task" />
+    </set>
+
+    <property name="Name"
+              column="Name"
+              type="string" />
+
+  </class>
+
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+﻿a.selectedItem {
+    font-weight: bold;
+}
+
+textarea.taskNotes {
+    min-width: 400px;
+    min-height: 200px;
+}
+
+div.fileUploadArea  {
+    width: 400px;
+    height: 100px;
+    border: 2px dashed grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

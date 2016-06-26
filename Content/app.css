@@ -1,0 +1,129 @@
+﻿html, body, #app-container, .wrap {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.app > .main {
+    width: calc(100% - 56px);
+    height: 100%;
+    position: absolute;
+    left: 56px;
+}
+
+.app #app-container .anydo-toolbar {
+    position: relative;
+    padding-right: 38px;
+    min-width: 225px;
+    height: 56px;
+}
+
+.anydo-toolbar-content {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.anydo-toolbar-content #left-ctrls {
+    display: flex;
+    justify-content: flex-start;
+    flex-basis: 420px;
+    align-items: center;
+}
+
+.anydo-toolbar-content #center {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.anydo-toolbar-content #right-ctrls {
+    display: flex;
+    justify-content: flex-end;
+    flex-basis: 356px;
+    align-items: center;
+}
+
+#date.topbar-icon, #clean.topbar-icon {
+    margin-right: 40px;
+}
+
+.app #app-container .tasks-window-container {
+    position: absolute;
+    height: calc(100% - 56px);
+    width: 100%; /* calc(100% - 67px); */
+    background-color: transparent !important;
+}
+
+#listFullView {
+    padding-right: 38px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    min-width: calc(994px - 56px);
+    max-width: calc(2560px - 56px);
+}
+
+#listFullView #list-header {
+    padding-top: 45px;
+    min-height: 140px;
+}
+
+#listFullView #list-header #category {
+    display: flex;
+    align-items: baseline;
+    height: 50px;
+}
+
+#listFullView #list-header #category #name 
+{
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    outline: none;
+    font-family: 'DINAlternate-Bold',Arial,sans-serif;
+    font-size: 40px;
+    border: 0;
+}
+
+#mainListsView {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+#mainListsView #hayush {
+    min-height: 160px;
+    line-height: 140px;
+    padding: 10px 20px 0 0;
+    font-size: 56px;
+    font-family: 'DINAlternate-Bold',Arial,sans-serif;
+    text-transform: uppercase;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'HelveticaNeueW01-45Ligh',Helvetica,Arial,'Lucida Grande',sans-serif;
+}
+
+h1, h2, h3 {
+    font-weight: 100;
+}

@@ -1,0 +1,25 @@
+﻿<div ng-show="!taskForEdit" id="listFullView" 
+    style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;">
+    <div id="list-header">
+        <div id="category">
+            <h2 id="name" style="padding-left: 10px;">
+                {{ $ctrl.selectedCategory ? $ctrl.selectedCategory.Name : "ALL" }}
+            </h2>
+        </div>
+    </div>
+    <task-list caption="TODAY" tasks="todaysTasks" on-add-task="onAddTaskClicked(today)"
+        on-edit-task-clicked="onEditTaskClicked(task)">
+    </task-list>
+    <task-list caption="TOMORROW" tasks="tomorrowsTasks" on-add-task="onAddTaskClicked(tomorrow)"
+        on-edit-task-clicked="onEditTaskClicked(task)">
+    </task-list>
+    <task-list caption="UPCOMING" tasks="upcomingTasks" on-add-task="onAddTaskClicked(twodays)"
+        on-edit-task-clicked="onEditTaskClicked(task)">
+    </task-list>
+    <task-list caption="SOMEDAY" tasks="someDayTasks" on-add-task="onAddTaskClicked(null)"
+        on-edit-task-clicked="onEditTaskClicked(task)">
+    </task-list>
+</div>
+<task-edit ng-show="taskForEdit" task="taskForEdit" editing-new-task="editingNewTask"
+    on-task-edited="onTaskEdited()">
+</task-edit>

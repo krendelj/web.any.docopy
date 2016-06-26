@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="index">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript" src="~/Scripts/angular.js"></script>
+    <script type="text/javascript" src="~/bower_components/oi.file/oi.file.js"></script>
+    <script type="text/javascript" src="~/Scripts/Views/index.js"></script>
+    <link rel="stylesheet" href="~/Content/app.css" />
+    <link rel="stylesheet" href="~/Content/copy.css" />
+</head>
+<body ng-controller="indexCtrl">
+    <div class="app">
+        <div class="main">
+            <div id="app-container">
+                <div>
+                    <div class="anydo-toolbar">
+                        <div class="anydo-toolbar-content">
+                            <div id="left-ctrls">
+                                <a href="javascript:void(0)" ng-click="selectedView = views.categories;">Categories</a>
+                            </div>
+                            <div id="center">
+                                <a id="date" class="topbar-icon" href="javascript:void(0)"
+                                    ng-click="selectedView = views.time;">Date</a>
+                                <a id="clean" class="topbar-icon" href="javascript:void(0)"
+                                    ng-click="selectedView = views.list;">List</a>
+                                <a id="priority" class="topbar-icon" href="javascript:void(0)"
+                                    ng-click="selectedView = views.priority;">Priority</a>
+                            </div>
+                            <div id="right-ctrls">
+                                <input type="text" ng-model="searchTasks" placeholder="Search tasks" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tasks-window-container" style="display: block;">
+                        <categories ng-if="selectedView == views.categories"
+                            on-select-all-categories="selectAllCategories()"
+                            on-select-category="selectCategory(category)">
+                        </categories>
+                        <time-view ng-if="selectedView == views.time"
+                            selected-category="selectedCategory" search="searchTasks">
+                        </time-view>
+                        <list-view ng-if="selectedView == views.list"
+                            selected-category="selectedCategory" search="searchTasks">
+                        </list-view>
+                        <priority-view ng-if="selectedView == views.priority"
+                            selected-category="selectedCategory" search="searchTasks">
+                        </priority-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

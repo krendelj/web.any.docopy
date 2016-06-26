@@ -1,0 +1,60 @@
+﻿<input type="text" ng-model="taskName" />
+<button type="button" ng-click="onOKClicked()">OK</button><br />
+{{ $ctrl.task.Category.Name }} {{ $ctrl.task.DateTime | date }}
+<label for="taskStar">Star</label>
+<input type="checkbox" id="taskStar" ng-model="taskPriority" />
+<div ng-show="!$ctrl.editingNewTask">
+    <a href="javascript:void(0)" ng-class="{ selectedItem: selectedItem == items.notes }"
+        ng-click="selectedItem = items.notes">Notes</a>
+    <a href="javascript:void(0)" ng-class="{ selectedItem: selectedItem == items.subtasks }"
+        ng-click="selectedItem = items.subtasks">Subtasks</a>
+    <a href="javascript:void(0)" ng-class="{ selectedItem: selectedItem == items.share }" 
+        ng-click="selectedItem = items.share">Share</a>
+    <a href="javascript:void(0)" ng-class="{ selectedItem: selectedItem == items.attachments }"
+        ng-click="selectedItem = items.attachments">Attachments</a>
+    <br />
+    <textarea ng-show="selectedItem == items.notes" class="taskNotes" ng-model="notes">
+    </textarea>
+    <div ng-show="selectedItem == items.subtasks">
+        <input type="text" ng-model="newSubtaskName" />
+        <button type="button" ng-click="addSubtask()">+</button>
+        <br />
+        <div ng-repeat="subtask in $ctrl.task.Subtasks" ng-init="subtaskCompleted = subtask.Completed;">
+            <span ng-show="subtaskToRename != this">
+                {{ subtask.Name }}
+                <input type="checkbox" ng-model="subtaskCompleted" ng-click="completeSubtask()" />
+                <button type="button" ng-click="$parent.subtaskToRename = this;
+                                                subtaskName = subtask.Name">Rename</button>
+                <button type="button" ng-show="subtask.Completed" ng-click="deleteSubtask()">
+                    Delete
+                </button>
+            </span>
+            <span ng-show="subtaskToRename == this">
+                <input type="text" ng-model="subtaskName" />
+                <button type="button" ng-click="renameSubtask()">Rename</button>
+            </span>
+        </div>        
+    </div>
+    <div ng-show="selectedItem == items.share">
+        Enter a friend's email address:<br />
+        <input type="email" ng-model="addAddress" />
+        <button type="button" ng-disabled="!addAddress" ng-click="addEmailAddress()">+</button>
+        <br />
+        <div ng-repeat="address in emails">
+            {{ address }}
+            <button type="button" ng-click="removeEmailAddress()">Remove</button>
+        </div>
+        <button type="button" ng-disabled="emails.length == 0" ng-click="sendEmails()">Send invitations</button>
+        <span ng-show="emailsHaveBeenSent">Invitations have been sent.</span>
+    </div>
+    <div ng-show="selectedItem == items.attachments">
+        <div class="fileUploadArea" oi-file="fileUploadOptions">
+            Drop files here.
+        </div>
+        <input type="file" oi-file="fileUploadOptions" />
+        <div ng-repeat="attachment in attachments">
+            <a href="Attachments/Download?id={{ attachment.Id }}">{{ attachment.FileName }}</a>
+            <button type="button" ng-click="deleteAttachment()">Delete</button>
+        </div>
+    </div>
+</div>

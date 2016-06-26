@@ -1,0 +1,12 @@
+﻿<div>
+    {{ $ctrl.caption }}<br />
+    <button type="button" ng-click="addTask()">+</button>
+    <div ng-repeat="task in $ctrl.tasks" ng-init="taskCompleted = task.Completed">
+        {{ task.Name }}
+        <input type="checkbox" ng-model="taskCompleted" ng-click="onTaskComplete(task, taskCompleted)" />
+        {{ task.Priority ? "Star" : "" }}
+        <button type="button" ng-click="$ctrl.onEditTaskClicked({ task: task })">Edit</button>
+        <button type="button" ng-show="task.Completed" ng-click="onTaskDelete(task)">Delete</button>
+    </div>
+    <div></div><br />
+</div>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="web.any.docopy.Domain" assembly="web.any.docopy"
+    default-lazy="false"> <!-- Running NHibernate in Medium Trust -->
+
+  <class name="web.any.docopy.Domain.Subtask"
+         table="Subtasks">
+
+    <id name="Id"
+      column="Id"
+      type="int">
+      <generator class="native" />
+    </id>
+
+    <many-to-one name="Task"
+             column="TaskId"
+             class="web.any.docopy.Domain.Task"
+             not-null="true" />
+
+    <property name="Name"
+          column="Name"
+          type="string" />
+
+    <property name="Completed"
+             column="Completed"
+             type="boolean" />
+
+  </class>
+  
+</hibernate-mapping>
