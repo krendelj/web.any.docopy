@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NHibernate.Collection.Generic;
+using System.IO;
 
 namespace web.any.docopy.Controllers
 {
@@ -93,7 +94,7 @@ namespace web.any.docopy.Controllers
             var session = DataConfig.GetSession();
             var task = session.Load<Domain.Task>(id);
             task.Category.Tasks.Remove(task);
-            task.DeleteFiles(Server.MapPath("~/public"));
+            task.DeleteFiles(Server.MapPath("~"));
             session.Delete(task);
             session.Transaction.Commit();
             return Json(new

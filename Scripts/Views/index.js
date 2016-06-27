@@ -52,6 +52,17 @@
                 }).then(function (response) {
                     var index = data.categories.indexOf(category);
                     data.categories.splice(index, 1);
+                    if (data.tasks) {
+                        var i = 0;
+                        while (i < data.tasks.length) {
+                            if (data.tasks[i].Category == category) {
+                                data.tasks.splice(i, 1);
+                            }
+                            else {
+                                i++;
+                            }
+                        }
+                    }
                 });
             },
 
@@ -290,7 +301,29 @@
         return viewFunctions;
     });
 
-    index.controller("indexCtrl", function ($scope, data) {
+    index.factory("applicationSettings", function () {
+        var applicationSettings = {};
+        applicationSettings.dateFormats = {
+            ddmmyy: 1,
+            mmddyy: 2
+        };
+        applicationSettings.settings = {
+
+            dateFormat: applicationSettings.dateFormats.ddmmyy,
+
+            getDateFormatString: function () {
+                if (this.dateFormat == applicationSettings.dateFormats.ddmmyy) {
+                    return "dd/MM/yy";
+                }
+                else {
+                    return "MM/dd/yy";
+                }
+            }
+        };
+        return applicationSettings;
+    });
+
+    index.controller("indexCtrl", function ($scope, data, applicationSettings) {
 
         data.loadCategories(function () {
             $scope.categories = data.categories;
@@ -301,7 +334,8 @@
             categories: 1,
             time: 2,
             list: 3,
-            priority: 4
+            priority: 4,
+            options: 5
         };
 
         $scope.selectedCategory = null;
@@ -318,6 +352,9 @@
             $scope.selectedView = $scope.views.time;
             data.loadTasks(category);
         };
+
+        $scope.currentDate = new Date();
+        $scope.settings = applicationSettings.settings;
     });
 
     index.component("categories", {
@@ -577,7 +614,7 @@
 
     index.component("taskEdit", {
         templateUrl: "Templates/TaskEdit.html",
-        controller: function ($scope, data) {
+        controller: function ($scope, data, applicationSettings) {
             var ctrl = this;
 
             ctrl.$onChanges = function () {
@@ -695,11 +732,39 @@
                 var childScope = this;
                 data.deleteAttachment(childScope.attachment, $scope.attachments);
             };
+
+            $scope.settings = applicationSettings.settings;
         },
         bindings: {
             task: "<",
             editingNewTask: "<",
             onTaskEdited: "&"
+        }
+    });
+
+    index.component("options", {
+        templateUrl: "Templates/Options.html",
+        controller: function ($scope, applicationSettings) {
+            function dateFormatToString(dateFormat) {
+                if (dateFormat == applicationSettings.dateFormats.ddmmyy) {
+                    return "DD/MM/YY";
+                }
+                else {
+                    return "MM/DD/YY";
+                }
+            }
+
+            $scope.dateFormatString = dateFormatToString(applicationSettings.settings.dateFormat);
+
+            $scope.changeDateFormat = function () {
+                if (applicationSettings.settings.dateFormat == applicationSettings.dateFormats.ddmmyy) {
+                    applicationSettings.settings.dateFormat = applicationSettings.dateFormats.mmddyy;
+                }
+                else {
+                    applicationSettings.settings.dateFormat = applicationSettings.dateFormats.ddmmyy;
+                }
+                $scope.dateFormatString = dateFormatToString(applicationSettings.settings.dateFormat);
+            };
         }
     });
 })();

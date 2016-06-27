@@ -15,3 +15,7 @@ div.fileUploadArea  {
     align-items: center;
     justify-content: center;
 }
+
+span#topbarDate {
+    padding-left: 20px;
+}

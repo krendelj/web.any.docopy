@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace web.any.docopy.Controllers
 {
@@ -51,7 +52,7 @@ namespace web.any.docopy.Controllers
         {
             var session = DataConfig.GetSession();
             var category = session.Load<Domain.Category>(id);
-            category.DeleteFiles(Server.MapPath("~/public"));
+            category.DeleteFiles(Server.MapPath("~"));
             session.Delete(category);
             session.Transaction.Commit();
             return Json(new

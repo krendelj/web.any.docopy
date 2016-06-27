@@ -1,6 +1,6 @@
 ﻿<input type="text" ng-model="taskName" />
 <button type="button" ng-click="onOKClicked()">OK</button><br />
-{{ $ctrl.task.Category.Name }} {{ $ctrl.task.DateTime | date }}
+{{ $ctrl.task.Category.Name }} {{ $ctrl.task.DateTime | date : settings.getDateFormatString() }}
 <label for="taskStar">Star</label>
 <input type="checkbox" id="taskStar" ng-model="taskPriority" />
 <div ng-show="!$ctrl.editingNewTask">

@@ -16,6 +16,13 @@
 </head>
 <body ng-controller="indexCtrl">
     <div class="app">
+        <nav id="nav-bar">
+            <div class="main-menu">
+                <div style="height: 56px; display: flex; align-items: center;">
+                    <a href="javascript:void(0)" ng-click="selectedView = views.options;">Options</a>                
+                </div>
+            </div>
+        </nav>
         <div class="main">
             <div id="app-container">
                 <div>
@@ -23,6 +30,8 @@
                         <div class="anydo-toolbar-content">
                             <div id="left-ctrls">
                                 <a href="javascript:void(0)" ng-click="selectedView = views.categories;">Categories</a>
+                                <span id="topbarDate">Today is {{ currentDate | date : settings.getDateFormatString() }}
+                                </span>
                             </div>
                             <div id="center">
                                 <a id="date" class="topbar-icon" href="javascript:void(0)"
@@ -38,6 +47,9 @@
                         </div>
                     </div>
                     <div class="tasks-window-container" style="display: block;">
+                        <options ng-if="selectedView == views.options">
+                            
+                        </options>
                         <categories ng-if="selectedView == views.categories"
                             on-select-all-categories="selectAllCategories()"
                             on-select-category="selectCategory(category)">

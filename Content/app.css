@@ -127,3 +127,23 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 h1, h2, h3 {
     font-weight: 100;
 }
+
+.app #nav-bar {
+    position: absolute;
+    width: 56px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 990;
+}
+
+#nav-bar-customization-target, #nav-bar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}

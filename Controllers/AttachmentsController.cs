@@ -31,7 +31,9 @@ namespace web.any.docopy.Controllers
                 ContentType = files.ContentType,
                 Guid = Guid.NewGuid()
             };
-            var path = Path.Combine(Server.MapPath("~/public"), attachment.Guid.ToString());
+            var path = Path.Combine(
+                Path.Combine(Server.MapPath("~"), Domain.Attachment.AttachmentsStorageDirectory),
+                attachment.Guid.ToString());
             files.SaveAs(path);
             task.Attachments.Add(attachment);
             session.SaveOrUpdate(attachment);
@@ -47,7 +49,11 @@ namespace web.any.docopy.Controllers
         {
             var session = DataConfig.GetSession();
             var attachment = session.Load<Domain.Attachment>(id);
-            return File(Path.Combine(Server.MapPath("~/public"), attachment.Guid.ToString()),
+
+            return File(
+                Path.Combine(
+                    Path.Combine(Server.MapPath("~"), Domain.Attachment.AttachmentsStorageDirectory),
+                    attachment.Guid.ToString()),
                 attachment.ContentType,
                 attachment.FileName);
         }
@@ -56,7 +62,7 @@ namespace web.any.docopy.Controllers
         {
             var session = DataConfig.GetSession();
             var attachment = session.Load<Domain.Attachment>(id);
-            attachment.DeleteFile(Server.MapPath("~/public"));
+            attachment.DeleteFile(Server.MapPath("~"));
             attachment.Task.Attachments.Remove(attachment);
             session.Delete(attachment);
             session.Transaction.Commit();

@@ -18,9 +18,17 @@ namespace web.any.docopy.Domain
 
         public virtual string ContentType { get; set; }
 
-        public virtual void DeleteFile(string pathToDirectory)
+        public static string AttachmentsStorageDirectory
         {
-            File.Delete(Path.Combine(pathToDirectory, Guid.ToString()));
+            get
+            {
+                return System.Web.Configuration.WebConfigurationManager.AppSettings["attachmentsStorageDirectory"];
+            }
+        }
+
+        public virtual void DeleteFile(string rootPath)
+        {
+            File.Delete(Path.Combine(Path.Combine(rootPath, AttachmentsStorageDirectory), Guid.ToString()));
         }
     }
 }

@@ -1026,6 +1026,7 @@
     <EmbeddedResource Include="Subtask.hbm.xml" />
     <Content Include="Templates\Categories.html" />
     <Content Include="Templates\ListView.html" />
+    <Content Include="Templates\Options.html" />
     <Content Include="Templates\PriorityView.html" />
     <Content Include="Templates\TaskEdit.html" />
     <Content Include="Templates\TaskList.html" />
