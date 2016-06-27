@@ -7,14 +7,18 @@
             </h2>
         </div>
     </div>
-    <task-list ng-if="$ctrl.selectedCategory" caption="{{ $ctrl.selectedCategory.Name }}" 
-        tasks="tasks" on-add-task="onAddTaskClicked($ctrl.selectedCategory)"
-        on-edit-task-clicked="onEditTaskClicked(task)">
-    </task-list>
-    <task-list ng-if="!$ctrl.selectedCategory" ng-repeat="category in categories" caption="{{ category.Name }}"
-        tasks="tasksByList[$index]" on-add-task="onAddTaskClicked(category)"
-        on-edit-task-clicked="onEditTaskClicked(task)">
-    </task-list>
+    <div class="columns tasks">
+        <div class="columns-container">
+            <task-list ng-if="$ctrl.selectedCategory" caption="{{ $ctrl.selectedCategory.Name }}" 
+                tasks="tasks" on-add-task="onAddTaskClicked($ctrl.selectedCategory)"
+                on-edit-task-clicked="onEditTaskClicked(task)">
+            </task-list>
+            <task-list ng-if="!$ctrl.selectedCategory" ng-repeat="category in categories" caption="{{ category.Name }}"
+                tasks="tasksByList[$index]" on-add-task="onAddTaskClicked(category)"
+                on-edit-task-clicked="onEditTaskClicked(task)">
+            </task-list>
+        </div>
+    </div>
 </div>
 <task-edit ng-show="taskForEdit" task="taskForEdit" editing-new-task="editingNewTask"
     on-task-edited="onTaskEdited()">

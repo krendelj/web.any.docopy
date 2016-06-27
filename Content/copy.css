@@ -19,3 +19,7 @@ div.fileUploadArea  {
 span#topbarDate {
     padding-left: 20px;
 }
+
+span.completedTask {
+    text-decoration: line-through;
+}

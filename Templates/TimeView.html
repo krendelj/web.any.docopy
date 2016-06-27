@@ -7,18 +7,22 @@
             </h2>
         </div>
     </div>
-    <task-list caption="TODAY" tasks="todaysTasks" on-add-task="onAddTaskClicked(today)"
-        on-edit-task-clicked="onEditTaskClicked(task)">
-    </task-list>
-    <task-list caption="TOMORROW" tasks="tomorrowsTasks" on-add-task="onAddTaskClicked(tomorrow)"
-        on-edit-task-clicked="onEditTaskClicked(task)">
-    </task-list>
-    <task-list caption="UPCOMING" tasks="upcomingTasks" on-add-task="onAddTaskClicked(twodays)"
-        on-edit-task-clicked="onEditTaskClicked(task)">
-    </task-list>
-    <task-list caption="SOMEDAY" tasks="someDayTasks" on-add-task="onAddTaskClicked(null)"
-        on-edit-task-clicked="onEditTaskClicked(task)">
-    </task-list>
+    <div class="columns tasks">
+        <div class="columns-container">
+            <task-list caption="TODAY" tasks="todaysTasks" on-add-task="onAddTaskClicked(today)"
+                on-edit-task-clicked="onEditTaskClicked(task)">
+            </task-list>
+            <task-list caption="TOMORROW" tasks="tomorrowsTasks" on-add-task="onAddTaskClicked(tomorrow)"
+                on-edit-task-clicked="onEditTaskClicked(task)">
+            </task-list>
+            <task-list caption="UPCOMING" tasks="upcomingTasks" on-add-task="onAddTaskClicked(twodays)"
+                on-edit-task-clicked="onEditTaskClicked(task)">
+            </task-list>
+            <task-list caption="SOMEDAY" tasks="someDayTasks" on-add-task="onAddTaskClicked(null)"
+                on-edit-task-clicked="onEditTaskClicked(task)">
+            </task-list>
+        </div>
+    </div>
 </div>
 <task-edit ng-show="taskForEdit" task="taskForEdit" editing-new-task="editingNewTask"
     on-task-edited="onTaskEdited()">

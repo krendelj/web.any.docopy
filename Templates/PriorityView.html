@@ -7,12 +7,16 @@
             </h2>
         </div>
     </div>
-    <task-list caption="PRIORITY" tasks="priorityTasks" on-add-task="onAddTaskClicked(true)"
-            on-edit-task-clicked="onEditTaskClicked(task)">
-    </task-list>
-    <task-list caption="NORMAL" tasks="normalTasks" on-add-task="onAddTaskClicked(false)"
-            on-edit-task-clicked="onEditTaskClicked(task)">
-    </task-list>
+    <div class="columns tasks">
+        <div class="columns-container">
+            <task-list caption="PRIORITY" tasks="priorityTasks" on-add-task="onAddTaskClicked(true)"
+                    on-edit-task-clicked="onEditTaskClicked(task)">
+            </task-list>
+            <task-list caption="NORMAL" tasks="normalTasks" on-add-task="onAddTaskClicked(false)"
+                    on-edit-task-clicked="onEditTaskClicked(task)">
+            </task-list>
+        </div>
+    </div>
 </div>
 <task-edit ng-show="taskForEdit" task="taskForEdit" editing-new-task="editingNewTask"
     on-task-edited="onTaskEdited()">

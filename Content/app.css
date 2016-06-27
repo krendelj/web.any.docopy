@@ -147,3 +147,26 @@ h1, h2, h3 {
     flex-direction: column;
     height: 100%;
 }
+
+.columns {
+    white-space: nowrap;
+    flex-grow: 1;
+}
+
+.columns .columns-container {
+    display: flex;
+}
+
+.columns .columns-container section {
+    margin-right: 20px;
+}
+
+.columns .columns-container section {
+    flex-basis: 218px;
+    min-width: 218px;
+}
+
+.columns .columns-container section {
+    position: relative;
+    flex-grow: 1;
+}

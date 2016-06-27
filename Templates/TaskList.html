@@ -1,8 +1,9 @@
-﻿<div>
+﻿<section style="min-height: 277px;">
+<div>
     {{ $ctrl.caption }}<br />
     <button type="button" ng-click="addTask()">+</button>
     <div ng-repeat="task in $ctrl.tasks" ng-init="taskCompleted = task.Completed">
-        {{ task.Name }}
+        <span ng-class="{ completedTask: task.Completed }">{{ task.Name }}</span>
         <input type="checkbox" ng-model="taskCompleted" ng-click="onTaskComplete(task, taskCompleted)" />
         {{ task.Priority ? "Star" : "" }}
         <button type="button" ng-click="$ctrl.onEditTaskClicked({ task: task })">Edit</button>
@@ -10,3 +11,4 @@
     </div>
     <div></div><br />
 </div>
+</section>
