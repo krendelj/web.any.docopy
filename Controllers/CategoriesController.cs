@@ -53,6 +53,13 @@ namespace web.any.docopy.Controllers
             var session = DataConfig.GetSession();
             var category = session.Load<Domain.Category>(id);
             category.DeleteFiles(Server.MapPath("~"));
+            while (category.Tasks.Count > 0)
+            {
+                var task = category.Tasks.First();
+                task.Category = null;
+                category.Tasks.Remove(task);
+                session.Delete(task);
+            }
             session.Delete(category);
             session.Transaction.Commit();
             return Json(new

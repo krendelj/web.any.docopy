@@ -10,10 +10,12 @@
     <div class="columns tasks">
         <div class="columns-container">
             <task-list caption="PRIORITY" tasks="priorityTasks" on-add-task="onAddTaskClicked(true)"
-                    on-edit-task-clicked="onEditTaskClicked(task)">
+                on-task-dropped="onTaskDropped(data, true)"
+                on-edit-task-clicked="onEditTaskClicked(task)">
             </task-list>
             <task-list caption="NORMAL" tasks="normalTasks" on-add-task="onAddTaskClicked(false)"
-                    on-edit-task-clicked="onEditTaskClicked(task)">
+                on-task-dropped="onTaskDropped(data, false)"
+                on-edit-task-clicked="onEditTaskClicked(task)">
             </task-list>
         </div>
     </div>

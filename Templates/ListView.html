@@ -15,6 +15,7 @@
             </task-list>
             <task-list ng-if="!$ctrl.selectedCategory" ng-repeat="category in categories" caption="{{ category.Name }}"
                 tasks="tasksByList[$index]" on-add-task="onAddTaskClicked(category)"
+                on-task-dropped="onTaskDropped(data, category)"
                 on-edit-task-clicked="onEditTaskClicked(task)">
             </task-list>
         </div>

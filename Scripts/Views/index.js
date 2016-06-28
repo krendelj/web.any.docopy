@@ -1,6 +1,6 @@
 ﻿(function () {
 
-    var index = angular.module("index", ["oi.file"]);
+    var index = angular.module("index", ["oi.file", "ang-drag-drop"]);
 
     index.factory("data", function ($http) {
         var data = {
@@ -116,7 +116,7 @@
                 });
             },
 
-            changeTask: function (id, name, completed, priority, dateTime) {
+            changeTask: function (id, name, completed, priority, dateTime, categoryId) {
                 $http({
                     method: "POST",
                     url: "Tasks/Update",
@@ -125,7 +125,8 @@
                         name: name,
                         completed: completed,
                         priority: priority,
-                        dateTime: dateTime
+                        dateTime: dateTime,
+                        categoryId: categoryId
                     }
                 }).then(function (response) {
                     response.data.Category = data.categories.find(function (i) {
@@ -408,7 +409,7 @@
             };
 
             $scope.onTaskComplete = function (task, taskCompleted) {
-                data.changeTask(task.Id, task.Name, taskCompleted, task.Priority, task.DateTime);
+                data.changeTask(task.Id, task.Name, taskCompleted, task.Priority, task.DateTime, task.Category.Id);
             };
 
             $scope.onTaskDelete = function (task) {
@@ -419,7 +420,8 @@
             caption: "@",
             tasks: "<",
             onAddTask: "&",
-            onEditTaskClicked: "&"
+            onEditTaskClicked: "&",
+            onTaskDropped: "&"
         }
     });
 
@@ -486,6 +488,17 @@
             $scope.onTaskEdited = function () {
                 viewFunctions.onTaskEdited($scope);
             };
+
+            $scope.onTaskDropped = function (dragData, tag) {
+                data.changeTask(
+                    dragData.Id,
+                    dragData.Name,
+                    dragData.Completed,
+                    dragData.Priority,
+                    tag,
+                    dragData.Category.Id
+                );
+            };
         },
         bindings: {
             selectedCategory: "<",
@@ -549,6 +562,19 @@
             $scope.onTaskEdited = function () {
                 viewFunctions.onTaskEdited($scope);
             };
+
+            $scope.onTaskDropped = function (dragData, tag) {
+                if (dragData.category != tag) {
+                    data.changeTask(
+                        dragData.Id,
+                        dragData.Name,
+                        dragData.Completed,
+                        dragData.Priority,
+                        dragData.DateTime,
+                        tag.Id
+                    );
+                }
+            };
         },
         bindings: {
             selectedCategory: "<",
@@ -605,6 +631,18 @@
             $scope.onTaskEdited = function () {
                 viewFunctions.onTaskEdited($scope);
             };
+
+            $scope.onTaskDropped = function (dropData, tag) {
+                if (dropData.Priority != tag) {
+                    data.changeTask(
+                        dropData.Id,
+                        dropData.Name,
+                        dropData.Completed,
+                        tag,
+                        dropData.DateTime,
+                        dropData.Category.Id);
+                }
+            };
         },
         bindings: {
             selectedCategory: "<",
@@ -658,7 +696,7 @@
                     }
                     else {
                         data.changeTask(ctrl.task.Id, $scope.taskName, ctrl.task.Completed, $scope.taskPriority,
-                            ctrl.task.DateTime);
+                            ctrl.task.DateTime, ctrl.task.Category.Id);
                     }
                 }
                 ctrl.onTaskEdited();

@@ -14,7 +14,7 @@
 
     <set name="Tasks"
          inverse="true"
-         cascade="all-delete-orphan">
+         cascade="save-update">
 
       <key column="CategoryId" />
       <one-to-many class="web.any.docopy.Domain.Task" />

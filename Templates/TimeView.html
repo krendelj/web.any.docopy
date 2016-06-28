@@ -10,15 +10,19 @@
     <div class="columns tasks">
         <div class="columns-container">
             <task-list caption="TODAY" tasks="todaysTasks" on-add-task="onAddTaskClicked(today)"
+                on-task-dropped="onTaskDropped(data, today)"
                 on-edit-task-clicked="onEditTaskClicked(task)">
             </task-list>
             <task-list caption="TOMORROW" tasks="tomorrowsTasks" on-add-task="onAddTaskClicked(tomorrow)"
+                on-task-dropped="onTaskDropped(data, tomorrow)"
                 on-edit-task-clicked="onEditTaskClicked(task)">
             </task-list>
             <task-list caption="UPCOMING" tasks="upcomingTasks" on-add-task="onAddTaskClicked(twodays)"
+                on-task-dropped="onTaskDropped(data, twodays)"
                 on-edit-task-clicked="onEditTaskClicked(task)">
             </task-list>
             <task-list caption="SOMEDAY" tasks="someDayTasks" on-add-task="onAddTaskClicked(null)"
+                on-task-dropped="onTaskDropped(data, null)"
                 on-edit-task-clicked="onEditTaskClicked(task)">
             </task-list>
         </div>

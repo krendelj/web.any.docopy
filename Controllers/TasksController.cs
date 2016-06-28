@@ -67,7 +67,8 @@ namespace web.any.docopy.Controllers
             });
         }
 
-        public ActionResult Update(int id, string name, bool completed, bool priority, DateTime? dateTime)
+        public ActionResult Update(int id, string name, bool completed, bool priority, DateTime? dateTime,
+            int categoryId)
         {
             var session = DataConfig.GetSession();
             var task = session.Load<Domain.Task>(id);
@@ -75,6 +76,10 @@ namespace web.any.docopy.Controllers
             task.Completed = completed;
             task.Priority = priority;
             task.DateTime = dateTime;
+            var category = session.Load<Domain.Category>(categoryId);
+            task.Category.Tasks.Remove(task);
+            task.Category = category;
+            category.Tasks.Add(task);
             session.SaveOrUpdate(task);
             session.Transaction.Commit();
             return Json(new
