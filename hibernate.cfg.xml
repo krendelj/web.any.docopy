@@ -18,6 +18,7 @@
     <mapping resource="web.any.docopy.Task.hbm.xml" assembly="web.any.docopy" />
     <mapping resource="web.any.docopy.Subtask.hbm.xml" assembly="web.any.docopy" />
     <mapping resource="web.any.docopy.Attachment.hbm.xml" assembly="web.any.docopy" />
+    <mapping resource="web.any.docopy.Settings.hbm.xml" assembly="web.any.docopy" />
     
   </session-factory>
   

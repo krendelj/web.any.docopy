@@ -302,7 +302,7 @@
         return viewFunctions;
     });
 
-    index.factory("applicationSettings", function () {
+    index.factory("applicationSettings", function ($http) {
         var applicationSettings = {};
         applicationSettings.dateFormats = {
             ddmmyy: 1,
@@ -321,6 +321,26 @@
                 }
             }
         };
+        applicationSettings.loadSettings = function () {
+            $http({
+                method: "POST",
+                url: "Settings/Load"
+            }).then(function (response) {
+                applicationSettings.settings.dateFormat = response.data.DateFormat;
+            });
+        };
+        applicationSettings.saveSettings = function () {
+            $http({
+                method: "POST",
+                url: "Settings/Save",
+                params: {
+                    dateFormat: applicationSettings.settings.dateFormat
+                }
+            }).then(function (response) {
+                applicationSettings.settings.dateFormat = response.data.DateFormat;
+            });
+        };
+
         return applicationSettings;
     });
 
@@ -356,6 +376,7 @@
 
         $scope.currentDate = new Date();
         $scope.settings = applicationSettings.settings;
+        applicationSettings.loadSettings();
     });
 
     index.component("categories", {
@@ -655,6 +676,7 @@
         controller: function ($scope, data, applicationSettings) {
             var ctrl = this;
 
+            var notesSaved = true;
             ctrl.$onChanges = function () {
                 if (ctrl.task) {
                     $scope.taskName = ctrl.task.Name;
@@ -666,10 +688,18 @@
                         data.loadAttachments(ctrl.task, function (attachments) {
                             $scope.attachments = attachments;
                         });
+                        notesSaved = false;
                     }
                 }
                 $scope.selectedItem = $scope.items.notes;
-            }
+            };
+
+            ctrl.$onDestroy = function () {
+                if (!ctrl.editingNewTask && !notesSaved) {
+                    data.saveNotes(ctrl.task, $scope.notes);
+                    notesSaved = true;
+                }
+            };
 
             $scope.items = {
                 notes: 1,
@@ -686,6 +716,7 @@
                     data.saveNotes(ctrl.task, $scope.notes, function () {
                         onTaskEdited();
                     });
+                    notesSaved = true;
                 }
             };
 
@@ -783,6 +814,8 @@
     index.component("options", {
         templateUrl: "Templates/Options.html",
         controller: function ($scope, applicationSettings) {
+            var ctrl = this;
+
             function dateFormatToString(dateFormat) {
                 if (dateFormat == applicationSettings.dateFormats.ddmmyy) {
                     return "DD/MM/YY";
@@ -803,6 +836,10 @@
                 }
                 $scope.dateFormatString = dateFormatToString(applicationSettings.settings.dateFormat);
             };
+
+            ctrl.$onDestroy = function () {
+                applicationSettings.saveSettings();
+            }
         }
     });
 })();

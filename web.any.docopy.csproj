@@ -135,12 +135,14 @@
     <Compile Include="Controllers\AttachmentsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="DataConfig.cs" />
     <Compile Include="Domain\Attachment.cs" />
     <Compile Include="Domain\Category.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Domain\Settings.cs" />
     <Compile Include="Domain\Subtask.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -245,9 +247,9 @@
     <Content Include="Content\app.css" />
     <Content Include="Content\copy.css" />
     <Content Include="Global.asax" />
-    <Content Include="hibernate.cfg.xml">
+    <None Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -1024,6 +1026,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Subtask.hbm.xml" />
+    <EmbeddedResource Include="Settings.hbm.xml" />
     <Content Include="Templates\Categories.html" />
     <Content Include="Templates\ListView.html" />
     <Content Include="Templates\Options.html" />

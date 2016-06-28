@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="web.any.docopy.Domain" assembly="web.any.docopy"
+    default-lazy="false"> <!-- Running NHibernate in Medium Trust -->
+
+  <class name="web.any.docopy.Domain.Settings"
+         table="Settings">
+
+    <id name="Id"
+        column="Id"
+        type="int">
+    </id>
+
+    <property name="DateFormat"
+              column="DateFormat"
+              type="integer" />
+    
+  </class>
+</hibernate-mapping>
