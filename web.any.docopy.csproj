@@ -160,6 +160,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <EmbeddedResource Include="Category.hbm.xml" />
     <EmbeddedResource Include="Attachment.hbm.xml" />
+    <Content Include="bower_components\angular-native-dragdrop\demo\css\styles.css" />
+    <Content Include="bower_components\angular-native-dragdrop\demo\index.html" />
+    <Content Include="bower_components\angular-native-dragdrop\demo\js\app.js" />
+    <Content Include="bower_components\angular-native-dragdrop\draganddrop.js" />
+    <Content Include="bower_components\angular-native-dragdrop\draganddrop.min.js" />
+    <Content Include="bower_components\angular-native-dragdrop\Gulpfile.js" />
+    <Content Include="bower_components\angular-native-dragdrop\index.js" />
     <Content Include="bower_components\oi.file\demo\css\app.css" />
     <Content Include="bower_components\oi.file\demo\css\bootstrap.min.css" />
     <Content Include="bower_components\oi.file\demo\files_thumb\aac.png" />
@@ -247,6 +254,15 @@
     <Content Include="Content\app.css" />
     <Content Include="Content\copy.css" />
     <Content Include="Global.asax" />
+    <None Include="bower_components\angular-native-dragdrop\.bower.json" />
+    <None Include="bower_components\angular-native-dragdrop\bower.json" />
+    <None Include="bower_components\angular-native-dragdrop\docs\examples.md" />
+    <None Include="bower_components\angular-native-dragdrop\docs\getting-started.md" />
+    <None Include="bower_components\angular-native-dragdrop\docs\index.md" />
+    <None Include="bower_components\angular-native-dragdrop\LICENSE" />
+    <None Include="bower_components\angular-native-dragdrop\mkdocs.yml" />
+    <None Include="bower_components\angular-native-dragdrop\package.json" />
+    <None Include="bower_components\angular-native-dragdrop\README.md" />
     <None Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
